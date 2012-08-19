@@ -68,8 +68,17 @@ CGFloat const kRightViewUnfoldThreshold = 0.3;
 
 - (void)setCenterContentView:(UIView*)view
 {
+    if(self.centerView)
+    {
+        [self.centerView removeFromSuperview];
+    }
+    
     [view setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
+    [view setFrame:self.frame];
+    
     [self.contentView addSubview:view];
+
+    self.centerView = view;
 }
 
 - (void)setLeftFoldContentView:(UIView*)view
@@ -342,4 +351,21 @@ CGFloat const kRightViewUnfoldThreshold = 0.3;
     [self setPaperFoldState:PaperFoldStateDefault];
 }
 
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    
+    if(self.leftFoldView)
+    {
+        [self setLeftFoldContentView:self.leftFoldView.contentView];
+    }
+    
+    if(self.rightFoldView)
+    {
+        [self setRightFoldContentView:self.rightFoldView.contentView
+                   rightViewFoldCount:self.rightFoldView.numberOfFolds
+                  rightViewPullFactor:self.rightFoldView.pullFactor];
+        
+    }
+}
 @end

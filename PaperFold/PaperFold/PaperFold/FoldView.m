@@ -171,9 +171,12 @@
     // add the actual visible view, as a subview of _contentView
     [contentView setFrame:CGRectMake(0,0,contentView.frame.size.width,contentView.frame.size.height)];
     [self.contentView addSubview:contentView];
-    [self drawScreenshotOnFolds];
+    
+    if(self.frame.size.width > 0.0 && self.frame.size.height > 0.0)
+    {
+        [self drawScreenshotOnFolds];
+    }
 }
-
 
 - (void)drawScreenshotOnFolds
 {

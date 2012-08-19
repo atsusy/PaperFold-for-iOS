@@ -40,7 +40,8 @@
 - (UIImage*)screenshot
 {
     // take screenshot of the view
-    if ([self isKindOfClass:NSClassFromString(@"MKMapView")])
+    if ([self isKindOfClass:NSClassFromString(@"MKMapView")] ||
+        [self isKindOfClass:NSClassFromString(@"TiMapView")])
     {
         if ([[[UIDevice currentDevice] systemVersion] floatValue]>=6.0)
         {
@@ -87,3 +88,7 @@
 }
 
 @end
+
+@implementation UIViewScreenshotDummy
+@end
+

@@ -40,3 +40,6 @@ typedef void (^CompletionBlock)(UIImage *image);
 - (UIImage*)screenshot;
 - (void)takeScreenshot:(CompletionBlock)block;
 @end
+
+@interface UIViewScreenshotDummy
+@end

@@ -79,7 +79,10 @@
     [self insertSubview:self.contentView atIndex:0];
     // immediately take a screenshot of the content view to overlay in fold
     // if content view is a map view, screenshot will be a blank grid
-    [self drawScreenshotOnFolds];
+    if(self.frame.size.width > 0.0 && self.frame.size.height > 0.0)
+    {
+        [self drawScreenshotOnFolds];
+    }
     [self.contentView setHidden:YES];
 }
 
