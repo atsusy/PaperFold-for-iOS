@@ -100,6 +100,8 @@ CGFloat const kRightViewUnfoldThreshold = 0.3;
 
 - (void)setRightFoldContentView:(UIView*)view rightViewFoldCount:(int)rightViewFoldCount rightViewPullFactor:(float)rightViewPullFactor
 {
+    if(self.rightFoldView) [self.rightFoldView removeFromSuperview];
+
     self.rightFoldView = [[MultiFoldView alloc] initWithFrame:CGRectMake(self.frame.size.width,0,view.frame.size.width,self.frame.size.height) folds:rightViewFoldCount pullFactor:rightViewPullFactor];
     [self.rightFoldView setAutoresizingMask:UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleHeight];
     [self.contentView insertSubview:self.rightFoldView atIndex:0];
@@ -357,14 +359,18 @@ CGFloat const kRightViewUnfoldThreshold = 0.3;
     
     if(self.leftFoldView)
     {
-        [self setLeftFoldContentView:self.leftFoldView.contentView];
+        [self.leftFoldView setFrame:CGRectMake(0,
+                                               0,
+                                               self.leftFoldView.contentView.frame.size.width,
+                                               self.frame.size.height)];
     }
     
     if(self.rightFoldView)
     {
-        [self setRightFoldContentView:self.rightFoldView.contentView
-                   rightViewFoldCount:self.rightFoldView.numberOfFolds
-                  rightViewPullFactor:self.rightFoldView.pullFactor];
+        [self.rightFoldView setFrame:CGRectMake(self.frame.size.width,
+                                                0,
+                                                self.rightFoldView.contentView.frame.size.width,
+                                                self.frame.size.height)];
         
     }
 }
