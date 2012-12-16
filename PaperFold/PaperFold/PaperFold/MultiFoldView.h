@@ -32,6 +32,7 @@
  */
 
 @class MKMapView;
+@class TiMapView;
 #import <UIKit/UIKit.h>
 #import "FoldView.h"
 
